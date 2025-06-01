@@ -42,6 +42,6 @@ class MainApp:
             self.hasil.set("Input tidak valid!")
 
 if __name__ == "__main__":
-    app = ttkb.Window(themename="superhero")
+    app = ttkb.Window(themename="darksea")
     MainApp(app)
     app.mainloop()
