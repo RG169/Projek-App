@@ -1,65 +1,47 @@
-def celsiusTofahrenheit(c):
-    return (c * 9/5) + 32
+import ttkbootstrap as ttkb
 
-def celsiusTokelvin(c):
-    return c + 273.15
+class MainApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Konverter Suhu")
+        self.root.geometry("400x250")
 
-def fahrenheitTocelsius(f):
-    return (f - 32) * 5/9
+        ttkb.Label(root, text="Masukkan Nilai Suhu:").pack(pady=5)
+        self.entry_nilai = ttkb.Entry(root, bootstyle="danger")  # Background merah
+        self.entry_nilai.pack()
 
-def fahrenheitTokelvin(f):
-    return (f - 32) * 5/9 + 273.15
+        ttkb.Label(root, text="Dari Satuan:").pack(pady=5)
+        self.combo_dari = ttkb.Combobox(root, values=["Celsius", "Fahrenheit", "Kelvin"])
+        self.combo_dari.pack()
 
-def kelvinTocelsius(k):
-    return k - 273.15
+        ttkb.Button(root, text="Konversi", command=self.hitung, bootstyle="success").pack(pady=10)
 
-def kelvinTofahrenheit(k):
-    return (k - 273.15) * 9/5 + 32
+        self.hasil = ttkb.StringVar()
+        ttkb.Label(root, textvariable=self.hasil, bootstyle="primary").pack(pady=5)
 
-temp = []
+    def hitung(self):
+        try:
+            val = float(self.entry_nilai.get())
+            unit = self.combo_dari.get()
 
-while True:
-    print("\nTemperature Converter")
-    print("1: Celsius to Fahrenheit & Kelvin")
-    print("2: Fahrenheit to Celsius & Kelvin")
-    print("3: Kelvin to Celsius & Fahrenheit")
-    print("4: Exit")
-    flChoice = int(input("Choose a conversion option (1-4): "))
+            if unit == "Celsius":
+                f = (val * 9/5) + 32
+                k = val + 273.15
+                self.hasil.set(f"{val}°C = {f:.2f}°F | {k:.2f} K")
+            elif unit == "Fahrenheit":
+                c = (val - 32) * 5/9
+                k = c + 273.15
+                self.hasil.set(f"{val}°F = {c:.2f}°C | {k:.2f} K")
+            elif unit == "Kelvin":
+                c = val - 273.15
+                f = (c * 9/5) + 32
+                self.hasil.set(f"{val} K = {c:.2f}°C | {f:.2f}°F")
+            else:
+                self.hasil.set("Pilih satuan suhu yang valid!")
+        except Exception:
+            self.hasil.set("Input tidak valid!")
 
-    if flChoice == 1:
-        c = float(input("Enter temperature in Celsius: "))
-        f = celsiusTofahrenheit(c)
-        k = celsiusTokelvin(c)
-        print(f"{c}°C = {f}°F")
-        print(f"{c}°C = {k}K")
-        temp.append(f"{c}°C = {f}°F")
-        temp.append(f"{c}°C = {k}K")
-
-    elif flChoice == 2:
-        f = float(input("Enter temperature in Fahrenheit: "))
-        c = fahrenheitTocelsius(f)
-        k = fahrenheitTokelvin(f)
-        print(f"{f}°F = {c}°C")
-        print(f"{f}°F = {k}K")
-        temp.append(f"{f}°F = {c}°C")
-        temp.append(f"{f}°F = {k}K")
-
-    elif flChoice == 3:
-        k = float(input("Enter temperature in Kelvin: "))
-        c = kelvinTocelsius(k)
-        f = kelvinTofahrenheit(k)
-        print(f"{k}K = {c}°C")
-        print(f"{k}K = {f}°F")
-        temp.append(f"{k}K = {c}°C")
-        temp.append(f"{k}K = {f}°F")
-
-    elif flChoice == 4:
-        print("Thank you, for using our services.")
-        break 
-    else:
-        print("Please select a number between 1 and 4.")
-        
-print("\nSummary of your conversions:")
-for t in temp:
-    print(t)
-
+if __name__ == "__main__":
+    app = ttkb.Window(themename="superhero")
+    MainApp(app)
+    app.mainloop()
