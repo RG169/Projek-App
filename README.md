@@ -6,7 +6,7 @@ Dibuat dengan Python menggunakan [ttkbootstrap](https://ttkbootstrap.readthedocs
 ---
 
 ## 📸 Demo
-![UI aplikasi yang sedang berjalan](/https://github.com/RG169/Projek-App/blob/main/img/Screenshot%20(1123).png)
+![UI aplikasi yang sedang berjalan](img/Screenshot%20(1123).png)
 
 ---
 
