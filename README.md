@@ -16,7 +16,7 @@ Dibuat dengan Python menggunakan [ttkbootstrap](https://ttkbootstrap.readthedocs
 - Pilih satuan suhu asal: Celsius, Fahrenheit, atau Kelvin.
 - Tampilkan hasil konversi ke dua satuan lainnya secara real-time.
 - Validasi input agar hanya menerima angka valid.
-- Desain modern dan responsif menggunakan tema `darksea` dari `ttkbootstrap`.
+- Desain modern dan responsif menggunakan tema `superhero` dari `ttkbootstrap`.
 
 ---
 
